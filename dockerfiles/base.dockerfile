@@ -2,8 +2,8 @@ FROM ubuntu:18.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
+RUN sed -i 's@archive.ubuntu.com@mirror.kakao.com@g' /etc/apt/sources.list
 RUN apt-get update -y && apt-get upgrade -y
-
 RUN apt-get install build-essential -y && \
 # Related to build...
 apt-get install cmake -y && \
@@ -39,5 +39,5 @@ RUN apt-get autoclean
 
 RUN mkdir slam && cd slam && \
     git clone https://github.com/LeeJuCheon/SLAM_PoC_Project.git &&\
-    cd CI-Tutorial && python3 ./buildDeps.py --d --system
+    cd SLAM_PoC_Project && python3 ./buildDeps.py --d --system
 
